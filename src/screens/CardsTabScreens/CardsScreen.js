@@ -1,4 +1,6 @@
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import ScreenHeader from "../../components/ScreenHeader";
+import CardsTabCard from "../../components/CardsTabCard";
 
 const CardsScreen = () => {
     const dummyData = {
@@ -32,11 +34,35 @@ const CardsScreen = () => {
         }
     }
     return(
-        <SafeAreaView>
-            <Text>Loyalty</Text>
+        <SafeAreaView style={styles.container}>
+            <ScreenHeader pageTitle="My Loyalty Cards"/>
+            <View>
+                <FlatList
+                    data={dummyData.data.stores}
+                    keyExtractor={store => store.id}
+                    renderItem={store => {                        
+                        return (
+                        <CardsTabCard
+                            id={store.item.id}
+                            name={store.item.name}
+                            description={store.item.description}
+                            stamps={store.item.stamps}
+                            stampsToRedeem={store.item.stampsToRedeem}
+                            redeemAvailable={store.item.redeemAvailable}
+                        />
+                    )}}
+                />
+            </View>
         </SafeAreaView>
 
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginHorizontal: 20
+    }
+});
 
 export default CardsScreen;

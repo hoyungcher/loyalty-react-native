@@ -1,8 +1,11 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView} from "react-native";
+import ScreenHeader from "../../components/ScreenHeader";
 
 const ExploreScreen = () => {
     return(
-        <><Text>Explore Screen</Text></>
+        <SafeAreaView>
+            <ScreenHeader pageTitle="Explore"/>
+        </SafeAreaView>
     );
 }
 

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
 
@@ -36,7 +35,7 @@ export const CardsNavigator = () => {
 
         </CardsStackNavigator.Navigator>
     );
-}
+};
 
 export const ExploreNavigator = () => {
     return (
@@ -47,8 +46,8 @@ export const ExploreNavigator = () => {
             />
 
         </ExploreStackNavigator.Navigator>
-    )
-}
+    );
+};
 
 export const AccountNavigator = () => {
     return (
@@ -72,14 +71,16 @@ export const MainNavigator = () => {
                 name="CardsNavigator"
                 component={CardsNavigator}
                 options={{
+                    headerShown: false,
                     tabBarLabel: "Cards",
-                    tabBarIcon: () => <FontAwesome5 name="wallet" size={22} color="black" />
+                    tabBarIcon: () => <FontAwesome5 name="wallet" size={22} color="black" />   
                 }}
             />
             <BottomTabNavigator.Screen
                 name="ExploreNavigator"
                 component={ExploreNavigator}
                 options={{
+                    headerShown: false,
                     tabBarLabel: "Explore",
                     tabBarIcon: () => <FontAwesome5 name="search" size={24} color="black" />
                 }}
@@ -96,6 +97,7 @@ export const MainNavigator = () => {
                 name="AccountNavigator"
                 component={AccountNavigator}
                 options={{
+                    headerShown: false,
                     tabBarLabel: "Account",
                     tabBarIcon: () => <MaterialCommunityIcons name="account" size={24} color="black" />
                 }}
