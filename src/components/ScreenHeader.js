@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     headingText: {
-        fontSize: 20,
+        fontSize: 28,
         alignSelf: 'center'
     }
 });

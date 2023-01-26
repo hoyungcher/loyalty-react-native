@@ -89,6 +89,7 @@ export const MainNavigator = () => {
                 name="Code"
                 component={CodeScreen}
                 options={{
+                    headerShown: false,
                     tabBarLabel: "Code",
                     tabBarIcon: () => <MaterialIcons name="qr-code" size={24} color="black" />
                 }}
