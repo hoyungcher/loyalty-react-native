@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import ScreenHeader from "../../components/ScreenHeader";
 import CardsTabCard from "../../components/CardsTabCard";
 
-const CardsScreen = () => {
+const CardsScreen = ({navigation}) => {
     const dummyData = {
         data: {
             stores: [
@@ -33,6 +33,13 @@ const CardsScreen = () => {
             ]
         }
     }
+
+    const navigateToCard = (id) => {
+        navigation.navigate("Card", {
+            storeId: id
+        });
+    }
+
     return(
         <SafeAreaView style={styles.container}>
             <ScreenHeader pageTitle="My Loyalty Cards"/>
@@ -42,14 +49,16 @@ const CardsScreen = () => {
                     keyExtractor={store => store.id}
                     renderItem={store => {                        
                         return (
-                        <CardsTabCard
-                            id={store.item.id}
-                            name={store.item.name}
-                            description={store.item.description}
-                            stamps={store.item.stamps}
-                            stampsToRedeem={store.item.stampsToRedeem}
-                            redeemAvailable={store.item.redeemAvailable}
-                        />
+                        <TouchableOpacity onPress={() => navigateToCard(store.item.id)}>
+                            <CardsTabCard
+                                id={store.item.id}
+                                name={store.item.name}
+                                description={store.item.description}
+                                stamps={store.item.stamps}
+                                stampsToRedeem={store.item.stampsToRedeem}
+                                redeemAvailable={store.item.redeemAvailable}
+                            />
+                        </TouchableOpacity>
                     )}}
                 />
             </View>

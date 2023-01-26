@@ -8,10 +8,10 @@ import { MaterialIcons, MaterialCommunityIcons, FontAwesome5 } from '@expo/vecto
 import CardScreen from "./screens/CardsTabScreens/CardScreen";
 import CardsScreen from "./screens/CardsTabScreens/CardsScreen";
 
-import ExploreScreen from "./screens/ExploreTabScreens/ExploreScreen";
 
 import CodeScreen from "./screens/CodeScreen";
 import AccountScreen from "./screens/AccountTabScreens/AccountScreen";
+import ExploreScreen from "./screens/ExploreTabScreens/ExploreScreen";
 
 const BottomTabNavigator = createBottomTabNavigator();
 

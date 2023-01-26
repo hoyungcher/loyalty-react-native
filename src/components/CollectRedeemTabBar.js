@@ -3,28 +3,22 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CollectRedeemTab from "./CollectRedeemTab";
 
 const CollectRedeemTabBar = (props) => {
-    const [collectMode, setCollectMode] = useState(true);
-    const [redeemMode, setRedeemMode] = useState(false);
-
     const handleCollectMode = () => {
-        setCollectMode(true);
-        setRedeemMode(false);
         props.changeTab(true);
     }
 
     const handleRedeemMode = () => {
-        setCollectMode(false);
-        setRedeemMode(true);
         props.changeTab(false);
     }
+    
 
     return (
         <View style={styles.tabBar}>
             <TouchableOpacity style={styles.touchable} onPress={() => handleCollectMode()}>
-                <CollectRedeemTab text="Collect" active={collectMode} />
+                <CollectRedeemTab text="Collect" active={props.collect} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.touchable} onPress={() => handleRedeemMode()}>
-                <CollectRedeemTab text="Redeem" active={redeemMode} />   
+                <CollectRedeemTab text="Redeem" active={!props.collect} />   
             </TouchableOpacity>
             
             

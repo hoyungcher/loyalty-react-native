@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 
 const CardsTabCard = (props) => {
-
     return (
         <View style={styles.container}>
             <View style={styles.leftBox}>

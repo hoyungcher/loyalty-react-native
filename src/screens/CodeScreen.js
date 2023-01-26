@@ -1,11 +1,39 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import ScreenHeader from "../components/ScreenHeader";
 import CollectRedeemTabBar from "../components/CollectRedeemTabBar";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
-const CodeScreen = () => {
+const CodeScreen = ({route}) => {
+    const isFocused = useIsFocused();
     const [collect, setCollect] = useState(true);
+
+    // useEffect(() => {
+    //     if (isFocused) {
+    //         if (route.params) {
+    //             if (route.params.collect) {
+    //                 setCollect(false);
+    //             }
+    //         }
+    //     }
+        
+    // }, [route, isFocused]);
+
+    useFocusEffect(
+        useCallback(() => {
+            if (route.params) {
+                if (route.params.collect) {
+                    setCollect(true);
+                    console.log("HIII");
+                } else {
+                    setCollect(false);
+                }
+            }
+            
+
+        })
+    )
 
     const changeTab = (state) => {
         setCollect(state);
