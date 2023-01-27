@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Text, View, StyleSheet, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import ScreenHeader from "../../components/ScreenHeader";
+import { useFocusEffect } from "@react-navigation/native";
 
 const CardScreen = ({ route, navigation }) => {
     const dummyData = {
@@ -36,9 +37,9 @@ const CardScreen = ({ route, navigation }) => {
             ]
         }
     }
-
-    const [store, setStore] = useState({});
-    const [stamps, setStamps] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    const [store, setStore] = useState();
+    const [stamps, setStamps] = useState();
 
     const navigateToCode = (collect) => {
         navigation.navigate('Code', {
@@ -47,13 +48,23 @@ const CardScreen = ({ route, navigation }) => {
 
     }
 
-    useEffect(() => {
+    const loadData = () => {
         const { storeId } = route.params;
         setStore(dummyData.data.stores.find(store => store.id === storeId));
-        const data = new Array(store.stampsToRedeem).fill(false)
-        data.fill(true, 0, store.stamps);
-        setStamps([...data]);
-    }, [])
+        const data = new Array(dummyData.data.stores.find(store => store.id === storeId).stampsToRedeem).fill(false)
+        data.fill(true, 0, dummyData.data.stores.find(store => store.id === storeId).stamps);
+        setStamps(data);
+        setLoading(false)
+    }
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    if (isLoading) {
+        return (
+            <View></View>
+        )
+    }
 
     return(
         <SafeAreaView style={styles.container}>

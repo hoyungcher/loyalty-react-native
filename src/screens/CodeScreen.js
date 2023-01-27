@@ -9,23 +9,11 @@ const CodeScreen = ({route}) => {
     const isFocused = useIsFocused();
     const [collect, setCollect] = useState(true);
 
-    // useEffect(() => {
-    //     if (isFocused) {
-    //         if (route.params) {
-    //             if (route.params.collect) {
-    //                 setCollect(false);
-    //             }
-    //         }
-    //     }
-        
-    // }, [route, isFocused]);
-
     useFocusEffect(
         useCallback(() => {
             if (route.params) {
                 if (route.params.collect) {
                     setCollect(true);
-                    console.log("HIII");
                 } else {
                     setCollect(false);
                 }
@@ -33,7 +21,7 @@ const CodeScreen = ({route}) => {
             
 
         })
-    )
+    );
 
     const changeTab = (state) => {
         setCollect(state);
