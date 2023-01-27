@@ -8,24 +8,33 @@ import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 const CodeScreen = ({route}) => {
     const isFocused = useIsFocused();
     const [collect, setCollect] = useState(true);
+    const [overrideRouteParams, setOverrideRouteParams] = useState(false);
 
     useFocusEffect(
         useCallback(() => {
-            if (route.params) {
-                if (route.params.collect) {
-                    setCollect(true);
-                } else {
-                    setCollect(false);
+                if (route.params) {
+                    if (route.params.collect) {
+                        setCollect(true);
+    
+                    } else {
+                        setCollect(false);
+                    }
                 }
-            }
+            
+            console.log("RERENDER");
             
 
         })
-    );
+        
+    )
 
     const changeTab = (state) => {
+        if (route.params) {
+            route.params.collect = state;
+        }
         setCollect(state);
     }
+    console.log(collect);
     return(
         <SafeAreaView style={styles.container}>
             <ScreenHeader pageTitle="Code"/>
